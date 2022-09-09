@@ -29,6 +29,7 @@ import DayOfWeek from '../RenderPropsComponents/DayOfWeek'
 import Month from './month'
 import MonthHeader from './month_header'
 import Notice from '../RenderPropsComponents/Notice'
+import TimePicker from "./time";
 
 const isValid = function(date: Date) {
   try {
@@ -90,7 +91,8 @@ export type Props = {
 type State = {
   activeMonth: any
   selection: { start: any; end: any } | null
-  shownNoticeType: any | null
+  shownNoticeType: any | null,
+  shownTimepicker: boolean
 }
 
 // TODO: FC Rewrite
@@ -121,7 +123,8 @@ export default class Calendar extends Component<Props, State> {
     this.state = {
       activeMonth: this._initialMonth(props),
       selection: null,
-      shownNoticeType: null
+      shownNoticeType: null,
+      shownTimepicker: false
     }
   }
 
@@ -353,7 +356,7 @@ export default class Calendar extends Component<Props, State> {
         <Notice {...props} />
       )
     } = this.props
-    const { shownNoticeType } = this.state
+    const { shownNoticeType, shownTimepicker } = this.state
 
     const children = (
       <>
@@ -366,6 +369,10 @@ export default class Calendar extends Component<Props, State> {
       </>
     )
 
+    const toggleTimePicker = () => {
+      this.setState({ shownTimepicker: !shownTimepicker })
+    }
+
     if (customRender) {
       return customRender({
         ...this.props,
@@ -373,6 +380,12 @@ export default class Calendar extends Component<Props, State> {
       })
     }
 
-    return <div className={blockClassName}>{children}</div>
+    return   <div className={blockClassName}>
+      {children}
+      <button className='time-picker__button' onClick={toggleTimePicker}>Время</button>
+      {shownTimepicker && (
+        <TimePicker onRequestClose={toggleTimePicker} />
+      )}
+    </div>
   }
 }
