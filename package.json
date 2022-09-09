@@ -23,8 +23,7 @@
     "lint": "yarn lint:tsc && yarn prettier-standard && davinci-syntax lint code . --max-warnings 267",
     "storybook": "start-storybook -p 6006",
     "storybook:build": "build-storybook -c .storybook -o docs",
-    "storybook:deploy": "storybook-to-ghpages -s public -o docs",
-    "prepare": "yarn run build:lib"
+    "storybook:deploy": "storybook-to-ghpages -s public -o docs"
   },
   "bugs": {
     "url": "https://github.com/toptal/simple-react-calendar/issues"
