@@ -11,7 +11,7 @@
   "version": "2.2.8",
   "scripts": {
     "start": "webpack-dev-server --config config/webpack.dev.js  --env.development --hot --progress",
-    "build": "rm -rf ./dist && webpack --config config/webpack.lib.js --progress --env.production ",
+    "build": "webpack --config config/webpack.lib.js --progress --env.production ",
     "build:lib": "yarn babel src --delete-dir-on-start --out-dir lib --extensions '.ts','.tsx' --ignore 'src/example','src/@types','src/calendar/__specs__'",
     "clean": "rm -rf ./lib rm -rf ./dist",
     "test": "env NODE_ENV=test TZ=UTC jest ",
@@ -135,6 +135,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "date-fns": "^1.27.2"
+    "date-fns": "^1.27.2",
+    "react-wheelpicker": "^1.0.8"
   }
 }
